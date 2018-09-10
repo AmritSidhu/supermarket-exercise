@@ -22,7 +22,6 @@ public class Basket {
         this.totalBasketSum = totalBasketSum;
     }
 
-
     public ArrayList<Product> getBasket() {
         return basket;
     }
@@ -56,5 +55,34 @@ public class Basket {
             }
         }
         return getBasketContents();
+    }
+
+    public void discount(){
+        int count = 0;
+        for(Product product : getBasket()){
+            if(product.getProductCode() == "SR1"){
+                count += 1;
+            }
+        }
+        if(count >= 3){
+            for(Product product : getBasket()){
+                if(product.getProductCode() == "SR1"){
+                    product.setPrice(4.50);
+                }
+            }
+        }
+    }
+
+    public void bogof() {
+        int count = 0;
+        for(Product product : getBasket()){
+            if(product.getProductCode() == "FR1"){
+                count += 1;
+                if (count == 2){
+                    count = 0;
+                    product.setPrice(0);
+                }
+            }
+        }
     }
 }
